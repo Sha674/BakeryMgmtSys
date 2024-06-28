@@ -1,0 +1,32 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "BakeryMgmtSys",
+            "request": "launch",
+            "mainClass": "BakeryMgmtSys",
+            "projectName": "Bakery Management System_4cb97042"
+        },
+        {
+            "type": "java",
+            "name": "BakeryMgmtSys",
+            "request": "launch",
+            "mainClass": "BakeryMgmtSys",
+            "projectName": "Bakery Management System_930101f3",
+            "cwd": "${workspaceFolder}/src",
+            "classPaths": [
+                "${workspaceFolder}/bin"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        }
+    ]
+}
