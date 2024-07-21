@@ -12,12 +12,12 @@ public class Items {
         item_qty=qty;
     }
 
-    public void updateDesc(String desc)
+    public void setDesc(String desc)
     {
         item_desc=desc;
     }
 
-    public void updatePrice(double price)
+    public void setPrice(double price)
     {
         item_price=price;
     }
