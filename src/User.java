@@ -1,3 +1,4 @@
+
 public class User {
     protected String id;
     protected String password;
@@ -21,6 +22,15 @@ public class User {
     public void setPw(String password)
     {
         this.password=password;
+    }
+
+    public void loginPage()
+    {
+        int choose;
+        System.out.println("Login Page");
+        System.out.println("1.Admin Login");
+        System.out.println("2.Customer Login");
+
     }
 
     public boolean login(String id, String password)
