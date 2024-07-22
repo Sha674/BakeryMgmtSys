@@ -19,6 +19,10 @@ public class Customer extends User{
         this.address=address;
     }
 
+    public String getName(){
+        return name;
+    }
+
     public void displayCustInfo(){
         System.out.println("Name: "+name);
         System.out.println("Phone Number: "+phone);

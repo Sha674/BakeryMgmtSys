@@ -22,6 +22,14 @@ public class Items {
         item_price=price;
     }
 
+    public String getName(){
+        return item_desc;
+    }
+
+    public double getPrice(){
+        return item_price;
+    }
+
     // public void displayItem(){
     //     System.out.println("ID: "+item_id);
     //     System.out.println("Description: "+item_desc);
@@ -31,6 +39,6 @@ public class Items {
 
     //overriding toString()
     public String toString(){
-        return String.format("%-10s %-20s %-10s %-10s", item_id,item_desc,item_price,item_qty);
+        return String.format("%-10s %-25s %-10s %-10s", item_id,item_desc,item_price,item_qty);
     }
 }

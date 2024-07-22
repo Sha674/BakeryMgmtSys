@@ -10,6 +10,9 @@ public class Menu {
         menu_items.add(item);
     }
     
+    // public Items getItems(){
+        
+    // }
     public void displayMenu()
     {
         System.out.println("Menu: ");
