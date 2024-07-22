@@ -4,7 +4,7 @@ public class Order {
     private String order_id;
     private Date order_date;
     private Customer cust;
-    private ArrayList<Menu> menu_items;
+    private ArrayList<Items> menu_items;
     // private ArrayList<Integer> qty;
     private String order_status;
     private String payment_type;
@@ -12,7 +12,7 @@ public class Order {
     public Order(){
     }
 
-    public Order(Customer cust, ArrayList<Menu> menu_items, String payment_type){
+    public Order(Customer cust, ArrayList<Items> menu_items, String payment_type){
         // order_id=
         // order_date=
         this.cust=cust;
@@ -22,7 +22,7 @@ public class Order {
 
     }
 
-    public void setOrder(Customer cust, ArrayList<Menu> menu_items, String payment_type)
+    public void setOrder(Customer cust, ArrayList<Items> menu_items, String payment_type)
     {
         this.cust=cust;
         this.menu_items=menu_items;
@@ -34,7 +34,7 @@ public class Order {
         return order_id;
     }
     
-    public ArrayList<Menu> getMenus(){
+    public ArrayList<Items> getMenus(){
         return menu_items;
     }
 

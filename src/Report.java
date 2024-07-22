@@ -44,6 +44,7 @@ public class Report {
     }
 
     public void generateOrderRp(){
+        reportHeader();
         
     }
 
