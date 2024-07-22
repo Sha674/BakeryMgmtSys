@@ -10,9 +10,16 @@ public class Menu {
         menu_items.add(item);
     }
     
-    // public Items getItems(){
-        
-    // }
+    public Items getItem(String itemId) 
+    {
+        for (Items item : menu_items) {
+            if (item.getId().equalsIgnoreCase(itemId)) {
+                return item;
+            }
+        }
+        return null;
+    }
+    
     public void displayMenu()
     {
         System.out.println("Menu: ");
