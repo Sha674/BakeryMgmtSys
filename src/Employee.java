@@ -4,6 +4,13 @@ public class Employee extends User
     private String role;
     Scanner sc = new Scanner(System.in);
 
+    public Employee(){
+        
+    }
+    public Employee(String id, String password, String role){
+        super(id,password);
+        this.role=role;
+    }
     public void setRole(String role)
     {
         this.role=role;
@@ -41,9 +48,9 @@ public class Employee extends User
         }
     }
 
-    public void employeePage(Menu menu,Item item,Order order, String status)
+    public void employeePage(Menu menu,Items item,Order order, String status)
     {
-        int choice;
+        int choice=0;
         System.out.println("Welcome");
         System.out.println("1.Update status ");
         System.out.println("2.Edit item");
@@ -63,4 +70,3 @@ public class Employee extends User
 
 }
 
-}

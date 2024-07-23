@@ -1,45 +1,78 @@
 import java.util.*;
 public class BakeryMgmtSys 
 {
+    static Scanner sc=new Scanner(System.in);
+
+    public static Customer registerPage(){
+        System.out.println("Register Page");
+        System.out.println("Enter username : ");
+        sc.nextLine();
+        String id = sc.nextLine();
+        System.out.println("Enter password : ");
+        String password = sc.nextLine();
+        System.out.println("Enter name: ");
+        String name = sc.nextLine();
+        System.out.println("Enter phone number: ");
+        String phone = sc.nextLine();
+        System.out.println("Enter address: ");
+        String address = sc.nextLine();
+        Customer cust=new Customer(id,password,name,phone,address);
+        return cust;
+    }
     public static void loginPage(ArrayList<Employee> staff, ArrayList<Customer> customer)
     {
-        Scanner sc=new Scanner(System.in);
-        int select; 
+        int select=0; 
         System.out.println("Login Page");
         System.out.println("1.Employee Login");
         System.out.println("2.Customer Login");
-        System.out.println("3.Back to previous page");
+        System.out.println("3.Exit");
         select = sc.nextInt();
-        // case 1:
-        //     staff.login();
+        sc.nextLine();
+        switch(select){
+            case 1:
+                System.out.println("Enter username: ");
+                String id=sc.nextLine();
+                for(Employee s:staff){
+                    if(id.equals(s.id)){
+                        System.out.println("Enter password: ");
+                        String password=sc.nextLine();
+                        boolean logged=s.login(id,password);
+                        if(logged){
+                            System.out.println("Logged in");
+                        }
+                        else{
+                            System.out.println("Failed");
+                        }
+                    }
+                }
+            case 2: return;
+            case 3: return;
+        }
     }
     public static void main(String[] args) throws Exception 
     { 
-        Scanner sc=new Scanner(System.in);
         int choose;
         boolean flag = true;
         ArrayList<Employee> employees=new ArrayList<Employee>();
-        Employee admin=new Employee();
-        employees.add(admin);
         ArrayList<Customer> customers=new ArrayList<Customer>();
-        Customer c = new Customer();
-        customers.add(c);
-        
-        // while(flag)
-        // {
-        //     System.out.println("Bakery Management System");
-        //     System.out.println("1.Login");
-        //     System.out.println("2.Register");
-        //     System.out.println("3.Exit");
-        //     System.out.println("Please enter integer code to continue : ");
-        //     choose = sc.nextInt();
-        //     switch(choose)
-        //     {
-        //         case 1:System.out.println("hello");loginPage(employees,customers);break;
-        //         case 2:c.registerPage();break;
-        //         case 3:flag=false;break;
-        //         default:System.out.println("Please try again");break;
-        //     }
-        // }
+        employees.add(new Employee("Ali","123","Manager"));
+        employees.add(new Employee("Abu","567","Sales"));
+
+        while(flag)
+        {
+            System.out.println("Bakery Management System");
+            System.out.println("1.Login");
+            System.out.println("2.Register");
+            System.out.println("3.Exit");
+            System.out.println("Please enter integer code to continue : ");
+            choose = sc.nextInt();
+            switch(choose)
+            {
+                case 1:loginPage(employees,customers);break;
+                case 2:customers.add(registerPage());break;
+                case 3:flag=false;break;
+                default:System.out.println("Please try again");break;
+            }
+        }
     }
 }

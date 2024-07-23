@@ -26,20 +26,20 @@ public class Customer extends User{
         System.out.println("Address: "+address);
     }
 
-    public void registerPage()
-    {
-        System.out.println("Register Page");
-        System.out.println("Enter username : ");
-        id = sc.nextLine();
-        System.out.println("Enter password : ");
-        password = sc.nextLine();
-        System.out.println("Enter name: ");
-        name = sc.nextLine();
-        System.out.println("Enter phone number: ");
-        phone = sc.nextLine();
-        System.out.println("Enter address: ");
-        address = sc.nextLine();
-    }
+    // public void registerPage()
+    // {
+    //     System.out.println("Register Page");
+    //     System.out.println("Enter username : ");
+    //     id = sc.nextLine();
+    //     System.out.println("Enter password : ");
+    //     password = sc.nextLine();
+    //     System.out.println("Enter name: ");
+    //     name = sc.nextLine();
+    //     System.out.println("Enter phone number: ");
+    //     phone = sc.nextLine();
+    //     System.out.println("Enter address: ");
+    //     address = sc.nextLine();
+    // }
 
     public void placeOrder(Menu menu)
     {
@@ -79,7 +79,7 @@ public class Customer extends User{
 
     public void customerPage(Menu menu)
     {
-        int choice;
+        int choice=0;
         System.out.println("Welcome");
         System.out.println("1.view menu ");
         System.out.println("2.place order");
