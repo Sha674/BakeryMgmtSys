@@ -9,11 +9,11 @@ public class OrderedItem
 
     }
     
-    public OrderedItem(Items item, int quantity, double amount) 
+    public OrderedItem(Items item, int quantity) 
     {
         this.item = item;
         this.quantity = quantity;
-        this.amount = amount;
+        amount=item.getPrice()*quantity;
     }
     
     public double getAmount()

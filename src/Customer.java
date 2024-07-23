@@ -54,8 +54,8 @@ public class Customer extends User{
             System.out.print("Enter item id : ");
             String id=sc.nextLine();
             for(Items m:menuItems){
-                if(id.equals(m)){
-                    
+                if(id.equals(m.getId())){
+
                 }
             }
             System.out.print("Enter quantity: ");
