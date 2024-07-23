@@ -26,6 +26,10 @@ public class Customer extends User{
         System.out.println("Address: "+address);
     }
 
+<<<<<<< HEAD
+    public void placeOrder()
+    {
+=======
     public void registerPage()
     {
         System.out.println("Register Page");
