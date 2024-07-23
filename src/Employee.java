@@ -21,17 +21,51 @@ public class Employee extends User
         order.updateStatus(status);
     }
 
+    public Items addItem(){
+        System.out.println("Enter item id: ");
+        String itemId=sc.nextLine();
+        System.out.println("Enter item description: ");
+        String itemDesc=sc.nextLine();
+        System.out.println("Enter item price: ");
+        double itemPrice=sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Enter item quantity: ");
+        int itemQty=sc.nextInt();
+        sc.nextLine();
+        return new Items(itemId, itemDesc, itemPrice, itemQty);
+    }
     public void editItem(Items item)
     {
-        System.out.println("Enter item id ?");
-        String id = sc.nextLine();
-        System.out.println("Enter item description ?");
-        String desc = sc.nextLine();
-        System.out.println("Enter item price ?");
-        double price = sc.nextDouble();
-        System.out.println("Enter item quantity ?");
-        int qty = sc.nextInt();
-        item.setItem(id,desc,price,qty);
+        int attChoice;
+        do{
+            System.out.println("Edit item details");
+            System.out.println("1. Item Description");
+            System.out.println("2. Item Price");
+            System.out.println("3. Item Quantity");
+            System.out.println("4. Exit");
+            attChoice=sc.nextInt();
+            sc.nextLine();
+            switch(attChoice){
+                case 1:
+                    System.out.println("Enter item description ?");
+                    item.setDesc(sc.nextLine());
+                    break;
+                case 2:
+                    System.out.println("Enter item price ?");
+                    item.setPrice(sc.nextDouble());
+                    break;
+                case 3:
+                    System.out.println("Enter item quantity ?");
+                    item.setQty(sc.nextInt());
+                    break;
+                case 4:
+                    return;
+                default:
+                    System.out.println("Please enter a valid value (1-4).");
+                    break;
+            }
+        }while(attChoice<1||attChoice>4);
+    
     }
 
     public void editMenu(Menu menu)
@@ -48,16 +82,18 @@ public class Employee extends User
         }
     }
 
-    public void employeePage(Menu menu,ArrayList<Items> item,ArrayList<Order> orders)
+    public void employeePage(Menu menu,ArrayList<Items> itemList,ArrayList<Order> orders)
     {
         int choice=0;
         boolean found=false,flag=true;
         System.out.println("Welcome");
         System.out.println("1.Update status ");
         System.out.println("2.Edit item");
-        System.out.println("3.Edit menu ");
-        System.out.println("4.View report ");
-        System.out.println("5.Exit ");
+        System.out.println("3.Add new item");
+        System.out.println("4.Delete an item");
+        System.out.println("5.Edit menu ");
+        System.out.println("6. View Report (only manager)");
+        System.out.println("7.Exit");
         while(flag)
         {
             found=false;
@@ -80,13 +116,38 @@ public class Employee extends User
                     }
                     break;
                 case 2:
-                    Items it=new Items();
-                    editItem(it);
-                    item.add(it);
+                    System.out.println("Enter item id: ");
+                    String itemId=sc.nextLine();
+                    for(Items item:itemList){
+                        if(itemId.equals(item.getId())){
+                            editItem(item);
+                        }
+                    }
                     break;
-                case 3:editMenu(menu);break;
-                case 4:viewReport();break;
-                case 5:flag=false;
+                case 3:
+                    itemList.add(addItem());
+                    break;
+                case 4:
+                    System.out.println("Enter item id to delete: ");
+                    String itId=sc.nextLine();
+                    Iterator<Items> it=itemList.iterator();
+                    while(it.hasNext()){
+                        Items current=it.next();
+                        if(itId.equals(current.getId())){
+                            it.remove();
+                            found=true;
+                            break;
+                        }
+                    }
+                    if(!found){
+                        System.out.println("Item not found. ");
+                    }
+                    else{
+                        System.out.println("Item deleted.");
+                    }
+                case 5:editMenu(menu);break;
+                case 6:viewReport();break;
+                case 7:flag=false;
                 default: System.out.println("Invalid number. Please try again.");break;
             }
         }

@@ -4,7 +4,9 @@ public class Items {
     private double item_price;
     private int item_qty;
 
-    public void setItem(String id, String desc, double price, int qty)
+    public Items(){}
+    
+    public Items(String id, String desc, double price, int qty)
     {
         item_id=id;
         item_desc=desc;
@@ -20,6 +22,10 @@ public class Items {
     public void setPrice(double price)
     {
         item_price=price;
+    }
+
+    public void setQty(int quantity){
+        item_qty=quantity;
     }
 
     public String getDesc(){
