@@ -22,7 +22,7 @@ public class Items {
         item_price=price;
     }
 
-    public String getName(){
+    public String getDesc(){
         return item_desc;
     }
 

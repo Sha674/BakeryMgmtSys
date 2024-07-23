@@ -12,7 +12,7 @@ public class Menu {
         menu_items.add(item);
     }
     
-    public ArrayList<Items> getMenus()
+    public ArrayList<Items> getMenu()
     {
         return menu_items;
     }

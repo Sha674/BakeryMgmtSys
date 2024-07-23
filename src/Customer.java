@@ -3,7 +3,7 @@ public class Customer extends User{
     private String name;
     private String phone;
     private String address;
-    private Order[] orderHistory;
+    private ArrayList<Order> orderHistory;
 
     Scanner sc=new Scanner(System.in);
 
@@ -14,6 +14,7 @@ public class Customer extends User{
         this.name=name;
         this.phone=phone;
         this.address=address;
+        orderHistory=new ArrayList<Order>();
     }
 
     public String getName(){
@@ -45,15 +46,21 @@ public class Customer extends User{
     {
         Order o = new Order();
         String method="";
-        ArrayList<Items> orderedItems=new ArrayList<Items>();
-        ArrayList<Integer> quantity=new ArrayList<Integer>();
-
-        viewMenu(menu);
-        System.out.print("Enter item id : ");
-        String id=sc.nextLine();
-        System.out.print("Enter quantity: ");
-        int qty=sc.nextInt();
-        quantity.add(qty);
+        boolean flag=false;
+        ArrayList<Items> menuItems=menu.getMenu();
+        ArrayList<OrderedItem> orderedItems=new ArrayList<OrderedItem>();
+        while(flag){
+            viewMenu(menu);
+            System.out.print("Enter item id : ");
+            String id=sc.nextLine();
+            for(Items m:menuItems){
+                if(id.equals(m)){
+                    
+                }
+            }
+            System.out.print("Enter quantity: ");
+            int qty=sc.nextInt();
+        }
         System.out.print("Select payment method: ");
         System.out.print("1.online banking ");
         System.out.print("2.e-wallet ");
@@ -64,7 +71,7 @@ public class Customer extends User{
             case 2:method = "E-wallet";break;
             default:System.out.print("invalid code");break;
         }
-        o.setOrder(name,orderedItems,quantity,method);
+        
     }
 
     public void viewMenu(Menu menu)
