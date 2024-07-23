@@ -45,15 +45,46 @@ public class Customer extends User{
     {
         Order o = new Order();
         String method="";
-        ArrayList<Items> orderedItems=new ArrayList<Items>();
-        ArrayList<Integer> quantity=new ArrayList<Integer>();
+        //ArrayList<Items> orderedItems=new ArrayList<Items>();
+        //ArrayList<Integer> quantity=new ArrayList<Integer>();
+        ArrayList<OrderedItem> ordered_items = new ArrayList<OrderedItem>();
 
         viewMenu(menu);
-        System.out.print("Enter item id : ");
-        String id=sc.nextLine();
-        System.out.print("Enter quantity: ");
+
+        String ordered_item;
+        do{
+		    System.out.println("Enter item id you want to add to order: (or enter 'end' to end the session)");
+		    ordered_item = sc.nextLine();
+		    if(!ordered_item.equalsIgnoreCase("end"))
+		    {
+		        boolean validItem = false;
+		        for(Items i:menu.getMenus())
+		        {
+		            if(i.getId().equalsIgnoreCase(ordered_item))
+		            {
+		                Items item = i;
+		                System.out.println("Enter quantity:");
+		                int quantity = sc.nextInt();
+		                i.reduceQty(quantity);
+		                sc.nextLine();
+		                double amount = i.getPrice()*quantity;
+		                ordered_items.add(new OrderedItem(item,quantity,amount));
+		                validItem = true;
+		            }
+		            break;
+		        }
+		        if(!validItem)
+		        {
+		            System.out.println("Invalid item id!");
+		        }
+		       
+		    }
+		}while(!ordered_item.equalsIgnoreCase("end"));
+
+        /*System.out.print("Enter quantity: ");
         int qty=sc.nextInt();
-        quantity.add(qty);
+        quantity.add(qty);*/
+
         System.out.print("Select payment method: ");
         System.out.print("1.online banking ");
         System.out.print("2.e-wallet ");
@@ -64,7 +95,7 @@ public class Customer extends User{
             case 2:method = "E-wallet";break;
             default:System.out.print("invalid code");break;
         }
-        o.setOrder(name,orderedItems,quantity,method);
+        o.setOrder(name,ordered_items,method);
     }
 
     public void viewMenu(Menu menu)
