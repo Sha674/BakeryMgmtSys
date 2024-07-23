@@ -42,36 +42,57 @@ public class Customer extends User{
     //     address = sc.nextLine();
     // }
 
-    public void placeOrder(Menu menu)
+    public Order placeOrder(Menu menu)
     {
-        Order o = new Order();
         String method="";
-        boolean flag=false;
+        boolean flag=true, found=false;
+        int code=0;
+        Items order=new Items();
         ArrayList<Items> menuItems=menu.getMenu();
         ArrayList<OrderedItem> orderedItems=new ArrayList<OrderedItem>();
         while(flag){
+            found=false;
             viewMenu(menu);
-            System.out.print("Enter item id : ");
-            String id=sc.nextLine();
-            for(Items m:menuItems){
-                if(id.equals(m.getId())){
-
+            while(!found){
+                System.out.print("Enter item id : ");
+                String id=sc.nextLine();
+                for(Items m:menuItems){
+                    if(id.equals(m.getId())){
+                        order=m;
+                        found=true;
+                        break;
+                    }
+                }
+                if(!found){
+                    System.out.println("Item id not found. Please try again.");
                 }
             }
             System.out.print("Enter quantity: ");
             int qty=sc.nextInt();
+            sc.nextLine();
+            orderedItems.add(new OrderedItem(order, qty));
+            System.out.println("Do you want to order other items? Please enter Y or N");
+            char ans=sc.next().charAt(0);
+            ans=Character.toUpperCase(ans);
+            if(ans=='N'){
+                flag=false;
+            }
         }
-        System.out.print("Select payment method: ");
-        System.out.print("1.online banking ");
-        System.out.print("2.e-wallet ");
-        int code =sc.nextInt();
-        switch(code)
-        {
-            case 1:method = "Online banking";break;
-            case 2:method = "E-wallet";break;
-            default:System.out.print("invalid code");break;
-        }
-        
+        do{
+            System.out.print("Select payment method: ");
+            System.out.print("1.online banking ");
+            System.out.print("2.e-wallet ");
+            code =sc.nextInt();
+            switch(code)
+            {
+                case 1:method = "Online banking";break;
+                case 2:method = "E-wallet";break;
+                default:System.out.print("invalid code");break;
+            }
+        }while(code<1||code>2);
+        Order customerOrd=new Order(name, orderedItems, method);
+        orderHistory.add(customerOrd);
+        return customerOrd;
     }
 
     public void viewMenu(Menu menu)
@@ -81,25 +102,30 @@ public class Customer extends User{
 
     public void viewOrdHis()
     {
-        
+        for(Order ordHis:orderHistory){
+            ordHis.displayOrder();
+        }
     }
 
-    public void customerPage(Menu menu)
+    public void customerPage(Menu menu,ArrayList<Order> cusOrder)
     {
         int choice=0;
-        System.out.println("Welcome");
-        System.out.println("1.view menu ");
-        System.out.println("2.place order");
-        System.out.println("3.view order history ");
-        System.out.println("4.Exit ");
-        switch(choice)
-        {
-            case 1:viewMenu(menu);break;
-            case 2:placeOrder(menu);break;
-            case 3:viewOrdHis();break;
-            case 4:return;
-            default: System.out.println("Invalid number. Please try again.");break;
-        }
+        do{
+            System.out.println("Welcome");
+            System.out.println("1.view menu ");
+            System.out.println("2.place order");
+            System.out.println("3.view order history ");
+            System.out.println("4.Exit ");
+            switch(choice)
+            {
+                case 1:viewMenu(menu);break;
+                case 2:cusOrder.add(placeOrder(menu));break;
+                case 3:viewOrdHis();break;
+                case 4:return;
+                default: System.out.println("Invalid number. Please try again.");break;
+            }
+        }while(choice<1||choice>4);
+        
     }
 
 }

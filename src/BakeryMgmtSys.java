@@ -16,10 +16,9 @@ public class BakeryMgmtSys
         String phone = sc.nextLine();
         System.out.println("Enter address: ");
         String address = sc.nextLine();
-        Customer cust=new Customer(id,password,name,phone,address);
-        return cust;
+        return new Customer(id,password,name,phone,address);
     }
-    public static void loginPage(ArrayList<Employee> staff, ArrayList<Customer> customer)
+    public static void loginPage(ArrayList<Employee> staff, ArrayList<Customer> customer, ArrayList<Order> orderList)
     {
         int select=0; 
         System.out.println("Login Page");
@@ -59,6 +58,7 @@ public class BakeryMgmtSys
         boolean flag = true;
         ArrayList<Employee> employees=new ArrayList<Employee>();
         ArrayList<Customer> customers=new ArrayList<Customer>();
+        ArrayList<Order> ordList=new ArrayList<Order>();
         employees.add(new Employee("Ali","123","Manager"));
         employees.add(new Employee("Abu","567","Sales"));
 
@@ -72,7 +72,7 @@ public class BakeryMgmtSys
             choose = sc.nextInt();
             switch(choose)
             {
-                case 1:loginPage(employees,customers);break;
+                case 1:loginPage(employees,customers,ordList);break;
                 case 2:customers.add(registerPage());break;
                 case 3:flag=false;break;
                 default:System.out.println("Please try again");break;
