@@ -18,26 +18,27 @@ public class BakeryMgmtSys
         String address = sc.nextLine();
         return new Customer(id,password,name,phone,address);
     }
-    public static void loginPage(ArrayList<Employee> staff, ArrayList<Customer> customer, ArrayList<Order> orderList)
+    public static void loginPage(Menu menu,ArrayList<Employee> staff, ArrayList<Customer> customer, ArrayList<Order> orderList)
     {
         int select=0; 
+        String id="",password="";
         System.out.println("Login Page");
         System.out.println("1.Employee Login");
         System.out.println("2.Customer Login");
-        System.out.println("3.Exit");
+        System.out.println("3.Back to previous page");
         select = sc.nextInt();
         sc.nextLine();
         switch(select)
         {
             case 1:
                 System.out.println("Enter username: ");
-                String id=sc.nextLine();
+                id=sc.nextLine();
                 for(Employee s:staff)
                 {
                     if(id.equals(s.id))
                     {
                         System.out.println("Enter password: ");
-                        String password=sc.nextLine();
+                        password=sc.nextLine();
                         boolean logged=s.login(id,password);
                         if(logged){
                             System.out.println("Logged in");
@@ -48,7 +49,25 @@ public class BakeryMgmtSys
                         }
                     }
                 }
-            case 2: return;
+            case 2: 
+                System.out.println("Enter username: ");
+                id=sc.nextLine();
+                for(Customer cust:customer){
+                    if(id.equals(cust.id))
+                    {
+                        System.out.println("Enter password: ");
+                        password=sc.nextLine();
+                        boolean logged=cust.login(id,password);
+                        if(logged){
+                            System.out.println("Logged in");
+                            cust.customerPage(menu, orderList);
+                        }
+                        else{
+                            System.out.println("Failed");
+                        }
+                    }
+                }
+                break;
             case 3: return;
         }
     }
@@ -59,6 +78,7 @@ public class BakeryMgmtSys
         ArrayList<Employee> employees=new ArrayList<Employee>();
         ArrayList<Customer> customers=new ArrayList<Customer>();
         ArrayList<Order> ordList=new ArrayList<Order>();
+        Menu menu=new Menu();
         employees.add(new Employee("Ali","123","Manager"));
         employees.add(new Employee("Abu","567","Sales"));
 
@@ -70,9 +90,10 @@ public class BakeryMgmtSys
             System.out.println("3.Exit");
             System.out.println("Please enter integer code to continue : ");
             choose = sc.nextInt();
+            sc.nextLine();
             switch(choose)
             {
-                case 1:loginPage(employees,customers,ordList);break;
+                case 1:loginPage(menu,employees,customers,ordList);break;
                 case 2:customers.add(registerPage());break;
                 case 3:flag=false;break;
                 default:System.out.println("Please try again");break;

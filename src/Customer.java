@@ -83,6 +83,7 @@ public class Customer extends User{
             System.out.print("1.online banking ");
             System.out.print("2.e-wallet ");
             code =sc.nextInt();
+            sc.nextLine();
             switch(code)
             {
                 case 1:method = "Online banking";break;
@@ -109,22 +110,25 @@ public class Customer extends User{
 
     public void customerPage(Menu menu,ArrayList<Order> cusOrder)
     {
-        int choice=0;
-        do{
+        int choice;
+        boolean flag=true;
+        while(flag){
             System.out.println("Welcome");
             System.out.println("1.view menu ");
             System.out.println("2.place order");
             System.out.println("3.view order history ");
             System.out.println("4.Exit ");
+            choice=sc.nextInt();
+            sc.nextLine();
             switch(choice)
             {
                 case 1:viewMenu(menu);break;
                 case 2:cusOrder.add(placeOrder(menu));break;
                 case 3:viewOrdHis();break;
-                case 4:return;
+                case 4:flag=false;break;
                 default: System.out.println("Invalid number. Please try again.");break;
             }
-        }while(choice<1||choice>4);
+        }
         
     }
 
