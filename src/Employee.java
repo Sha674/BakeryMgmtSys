@@ -5,7 +5,7 @@ public class Employee extends User
     Scanner sc = new Scanner(System.in);
 
     public Employee(){
-        
+
     }
     public Employee(String id, String password, String role){
         super(id,password);
@@ -48,9 +48,10 @@ public class Employee extends User
         }
     }
 
-    public void employeePage(Menu menu,Items item,Order order, String status)
+    public void employeePage(Menu menu,Items item,ArrayList<Order> orders)
     {
         int choice=0;
+        boolean found=false;
         System.out.println("Welcome");
         System.out.println("1.Update status ");
         System.out.println("2.Edit item");
@@ -59,7 +60,22 @@ public class Employee extends User
         System.out.println("5.Exit ");
         switch(choice)
         {
-            case 1:updateOrdStatus(order,status);break;
+            case 1:
+                System.out.println("Enter order ID: ");
+                String ord=sc.nextLine();
+                for(Order o:orders){
+                    if(ord.equals(o.getOrderId())){
+                        System.out.println("Enter status to change to: ");
+                        String status=sc.nextLine();
+                        updateOrdStatus(o,status);
+                        found=true;
+                        break;
+                    }
+                    if(!found){
+                        System.out.println("No order is found.");
+                    }
+                }
+                break;
             case 2:editItem(item);break;
             case 3:editMenu(menu);break;
             case 4:viewReport();break;

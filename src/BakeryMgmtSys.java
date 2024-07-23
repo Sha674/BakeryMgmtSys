@@ -28,17 +28,21 @@ public class BakeryMgmtSys
         System.out.println("3.Exit");
         select = sc.nextInt();
         sc.nextLine();
-        switch(select){
+        switch(select)
+        {
             case 1:
                 System.out.println("Enter username: ");
                 String id=sc.nextLine();
-                for(Employee s:staff){
-                    if(id.equals(s.id)){
+                for(Employee s:staff)
+                {
+                    if(id.equals(s.id))
+                    {
                         System.out.println("Enter password: ");
                         String password=sc.nextLine();
                         boolean logged=s.login(id,password);
                         if(logged){
                             System.out.println("Logged in");
+                            //s.employeePage();
                         }
                         else{
                             System.out.println("Failed");
