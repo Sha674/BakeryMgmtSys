@@ -76,10 +76,10 @@ public class Order {
         System.out.println("Payment Type: " + payment_type);
         System.out.println("\nOrdered Items: ");
         for(OrderedItem o:ordered_items)
-		{
-		    System.out.println(o);
-		}
-		System.out.println("Total Price: RM" + calculateTotalPrice());
+	{
+		System.out.println(o);
+	}
+	System.out.println("Total Price: RM" + calculateTotalPrice());
         
     }
 
