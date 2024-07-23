@@ -41,17 +41,30 @@ public class Customer extends User{
         address = sc.nextLine();
     }
 
-    public void placeOrder()
+    public void placeOrder(Menu menu)
     {
         Order o = new Order();
-        viewMenu();
+        String method="";
+        ArrayList<Items> orderedItems=new ArrayList<Items>();
+        ArrayList<Integer> quantity=new ArrayList<Integer>();
+
+        viewMenu(menu);
         System.out.print("Enter item id : ");
         String id=sc.nextLine();
         System.out.print("Enter quantity: ");
         int qty=sc.nextInt();
-        System.out.print("Enter payment method: ");
-        String method=sc.nextLine();
-        o.setOrder(id,qty,method);
+        quantity.add(qty);
+        System.out.print("Select payment method: ");
+        System.out.print("1.online banking ");
+        System.out.print("2.e-wallet ");
+        int code =sc.nextInt();
+        switch(code)
+        {
+            case 1:method = "Online banking";break;
+            case 2:method = "E-wallet";break;
+            default:System.out.print("invalid code");break;
+        }
+        o.setOrder(name,orderedItems,quantity,method);
     }
 
     public void viewMenu(Menu menu)
@@ -62,6 +75,24 @@ public class Customer extends User{
     public void viewOrdHis()
     {
         
+    }
+
+    public void customerPage(Menu menu)
+    {
+        int choice;
+        System.out.println("Welcome");
+        System.out.println("1.view menu ");
+        System.out.println("2.place order");
+        System.out.println("3.view order history ");
+        System.out.println("4.Exit ");
+        switch(choice)
+        {
+            case 1:viewMenu(menu);break;
+            case 2:placeOrder(menu);break;
+            case 3:viewOrdHis();break;
+            case 4:return;
+            default: System.out.println("Invalid number. Please try again.");break;
+        }
     }
 
 }

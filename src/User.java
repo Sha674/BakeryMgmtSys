@@ -25,7 +25,6 @@ public class User
         this.password=password;
     }
 
-
     public boolean login(String id, String password)
     {
         if (this.id.equals(id) && this.password.equals(password)){
