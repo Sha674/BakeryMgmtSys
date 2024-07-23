@@ -26,10 +26,6 @@ public class Customer extends User{
         System.out.println("Address: "+address);
     }
 
-<<<<<<< HEAD
-    public void placeOrder()
-    {
-=======
     public void registerPage()
     {
         System.out.println("Register Page");
@@ -45,10 +41,27 @@ public class Customer extends User{
         address = sc.nextLine();
     }
 
-    public void placeOrder(){}
+    public void placeOrder()
+    {
+        Order o = new Order();
+        viewMenu();
+        System.out.print("Enter item id : ");
+        String id=sc.nextLine();
+        System.out.print("Enter quantity: ");
+        int qty=sc.nextInt();
+        System.out.print("Enter payment method: ");
+        String method=sc.nextLine();
+        o.setOrder(id,qty,method);
+    }
 
-    public void viewMenu(Menu menu){}
+    public void viewMenu(Menu menu)
+    {
+        menu.displayMenu();
+    }
 
-    public void viewOrdHis(){}
+    public void viewOrdHis()
+    {
+        
+    }
 
 }
