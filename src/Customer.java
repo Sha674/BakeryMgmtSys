@@ -24,26 +24,13 @@ public class Customer extends User{
     }
 
     public void displayCustInfo(){
+        System.out.println("Username: "+id);
         System.out.println("Name: "+name);
         System.out.println("Phone Number: "+phone);
         System.out.println("Address: "+address);
     }
 
-    // public void registerPage()
-    // {
-    //     System.out.println("Register Page");
-    //     System.out.println("Enter username : ");
-    //     id = sc.nextLine();
-    //     System.out.println("Enter password : ");
-    //     password = sc.nextLine();
-    //     System.out.println("Enter name: ");
-    //     name = sc.nextLine();
-    //     System.out.println("Enter phone number: ");
-    //     phone = sc.nextLine();
-    //     System.out.println("Enter address: ");
-    //     address = sc.nextLine();
-    // }
-
+   
     public Order placeOrder(Menu menu)
     {
         String method="";
@@ -120,6 +107,45 @@ public class Customer extends User{
         }
     }
 
+    public void editProfile(){
+        displayCustInfo();
+        int choice=0;
+        do{
+            System.out.println("Edit Profile");
+            System.out.println("1.Username");
+            System.out.println("2.Password");
+            System.out.println("3.Name");
+            System.out.println("4.Phone");
+            System.out.println("5.Address");
+            System.out.println("Please enter integer code to continue :");
+            choice=sc.nextInt();
+            sc.nextLine();
+            switch(choice)
+            {
+                case 1: 
+                    System.out.println("Enter username:");
+                    id = sc.nextLine();
+                    break;
+                case 2: 
+                    System.out.println("Enter password:");
+                    password = sc.nextLine();
+                    break;
+                case 3:
+                    System.out.println("Enter name: ");
+                    name = sc.nextLine();
+                    break;
+                case 4:
+                    System.out.println("Enter phone: ");
+                    phone=sc.nextLine();
+                    break;
+                case 5:
+                    System.out.println("Enter address: ");
+                    address=sc.nextLine();
+                    break;
+                default:System.out.println("Invalid code. Please try again."); break;       
+            }
+        }while(choice<1||choice>5);
+    }
     public void customerPage(Menu menu,ArrayList<Order> cusOrder)
     {
         int choice;
@@ -129,7 +155,9 @@ public class Customer extends User{
             System.out.println("1.view menu ");
             System.out.println("2.place order");
             System.out.println("3.view order history ");
-            System.out.println("4.Exit ");
+            System.out.println("4.Edit profile ");
+            System.out.println("5.View profile");
+            System.out.println("6.Exit");
             System.out.println("Please enter integer code to continue :");
             choice=sc.nextInt();
             sc.nextLine();
@@ -154,7 +182,9 @@ public class Customer extends User{
                             viewOrdHis();
                         }
                         break;
-                case 4:flag=false;break;
+                case 4:editProfile();break;
+                case 5:displayCustInfo();break;
+                case 6:flag=false;break;
                 default: System.out.println("Invalid number. Please try again.");break;
             }
         }

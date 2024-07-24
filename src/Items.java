@@ -32,11 +32,6 @@ public class Items {
         return item_qty;
     }
 
-    public void reduceQty(int quantity)
-    {
-        item_qty-=quantity;
-    }
-
     public String getDesc(){
         return item_desc;
     }
@@ -47,6 +42,11 @@ public class Items {
 
     public String getId(){
         return item_id;
+    }
+
+    public void reduceQty(int quantity)
+    {
+        item_qty-=quantity;
     }
 
     // public void displayItem(){
