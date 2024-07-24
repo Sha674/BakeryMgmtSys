@@ -111,6 +111,27 @@ public class BakeryMgmtSys
         employees.add(new Employee("Ali","123","Manager"));
         employees.add(new Employee("Abu","567","Sales"));
 
+        itemList.add(new Items("BRE01","Sourdough Bread",9.00,20));
+        itemList.add(new Items("BRE02","Whole Wheat Bread",5.00,30));
+        itemList.add(new Items("BRE03","Multigrain Bread",8.00,15));
+        itemList.add(new Items("BRE04","RyeBread",6.00,20));
+        itemList.add(new Items("BRE05","Focaccia",7.00,15));
+        itemList.add(new Items("CAK01","Chocolate Cake",9.00,14));
+        itemList.add(new Items("CAK02","Vanilla Cake",9.00,10));
+        itemList.add(new Items("CAK03","Strawberry Cake",11.00,12));
+        itemList.add(new Items("CAK04","Tiramisu Cake",13.00,10));
+        itemList.add(new Items("CAK05","Fruits Cake",14.00,15));
+        itemList.add(new Items("COO01","White Chocolate Cookie",3.50,10));
+        itemList.add(new Items("COO02","Double Chocolate Cookie",3.50,12));
+        itemList.add(new Items("COO03","Matcha Cookie",4.00,10));
+        itemList.add(new Items("PAT01","Croissant",5.00,14));
+
+        for(Items i:itemList)
+        {
+            menu.addItem(i);
+        }
+
+
         while(flag)
         {
             System.out.println("Bakery Management System");

@@ -30,12 +30,13 @@ public class Menu {
     
     public void displayMenu()
     {
-        System.out.println("\n                          MENU");
-        System.out.println("----------------------------------------------------------------");
-        System.out.println("Item Id    Description          Price      Available Quantity");
+        System.out.println("\n                            MENU");
+        System.out.println("------------------------------------------------------------------");
+        System.out.println("Item Id    Description               Price      Available Quantity");
         for (Items menu: menu_items)
         {
             System.out.println(menu);
         }
+        System.out.println("------------------------------------------------------------------\n");
     }
 }

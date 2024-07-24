@@ -83,6 +83,7 @@ public class Order {
 		    System.out.println(o);
 	    }
 	    System.out.println("Total Price: RM" + calculateTotalPrice());
+        System.out.println("-------------------------------------------------------------------------------------------");
         
     }
 

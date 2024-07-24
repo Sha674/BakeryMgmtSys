@@ -64,7 +64,7 @@ public class Customer extends User{
                 if(avaiQty-qty>=0)
                     order.reduceQty(qty);
                 else
-                    System.out.println("Insufficient item quantity. Please enter quantity agian.");
+                    System.out.println("Insufficient item quantity. Please enter quantity again.");
             }while(avaiQty-qty<0);
             
             orderedItems.add(new OrderedItem(order, qty));
