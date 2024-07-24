@@ -49,6 +49,7 @@ public class BakeryMgmtSys
                         }
                     }
                 }
+                break;
             case 2: 
                 System.out.println("Enter username: ");
                 id=sc.nextLine();
