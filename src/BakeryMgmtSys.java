@@ -3,10 +3,25 @@ public class BakeryMgmtSys
 {
     static Scanner sc=new Scanner(System.in);
 
-    public static Customer registerPage(){
-        System.out.println("Register Page");
-        System.out.println("Enter username : ");
-        String id = sc.nextLine();
+    public static void registerPage(ArrayList<Customer> c)
+    {
+        boolean repeat;
+        String id;
+        do{
+            repeat=false;
+            System.out.println("Register Page");
+            System.out.println("Enter username : ");
+            id = sc.nextLine();
+            for(Customer cus: c)
+            {
+                if(id.equals(cus.id)){
+                    System.out.println("Username existed. Please enter another one.");
+                    repeat=true;
+                    break;
+                }           
+            }
+        }while(repeat);
+       
         System.out.println("Enter password : ");
         String password = sc.nextLine();
         System.out.println("Enter name: ");
@@ -15,7 +30,7 @@ public class BakeryMgmtSys
         String phone = sc.nextLine();
         System.out.println("Enter address: ");
         String address = sc.nextLine();
-        return new Customer(id,password,name,phone,address);
+        c.add(new Customer(id, password, name, phone, address));
     }
     public static void loginPage(Menu menu,ArrayList<Employee> staff, ArrayList<Customer> customer, ArrayList<Order> orderList, ArrayList<Items> itList)
     {
@@ -96,7 +111,7 @@ public class BakeryMgmtSys
             switch(choose)
             {
                 case 1:loginPage(menu,employees,customers,ordList,itemList);break;
-                case 2:customers.add(registerPage());break;
+                case 2:registerPage(customers);break;
                 case 3:flag=false;break;
                 default:System.out.println("Please try again");break;
             }
