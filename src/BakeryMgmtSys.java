@@ -5,9 +5,10 @@ public class BakeryMgmtSys
 
     public static void registerPage(ArrayList<Customer> c)
     {
-        boolean repeat=false;
+        boolean repeat;
         String id;
         do{
+            repeat=false;
             System.out.println("Register Page");
             System.out.println("Enter username : ");
             id = sc.nextLine();

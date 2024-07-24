@@ -67,9 +67,10 @@ public class Employee extends User
     
     }
 
-    public void editMenu(Menu menu)
+    public void editMenu(Menu menu,ArrayList<Items> itemList)
     {
         int choice=0;
+        boolean found=false;
         menu.displayMenu();
 
         System.out.println("Edit Menu");
@@ -82,22 +83,33 @@ public class Employee extends User
         {
             case 1: 
                 System.out.println("Enter item id :");
-                String id = sc.nextLine();
-                System.out.println("Enter item description :");
-                String desc = sc.nextLine();
-                System.out.println("Enter item price :");
-                double price = sc.nextDouble();
-                System.out.println("Enter item quantity :");
-                int qty = sc.nextInt();
-                sc.nextLine();
-                menu.addItem(new Items(id, desc, price, qty));
+                String itemId = sc.nextLine();
+                for(Items item:itemList){
+                    if(itemId.equals(item.getId())){
+                        menu.addItem(item);
+                        found=true;
+                        break;
+                    }
+                }
+                if(!found){
+                    System.out.println("Item not found. Do you wish to add item? Enter Y or N");
+                    char addNew = sc.next().charAt(0);
+                    addNew=Character.toUpperCase(addNew);
+                    if(addNew=='Y'){
+                        itemList.add(addItem());
+                    }
+                    else{
+                        return;
+                    }
+                }
                 break;
             case 2: 
                 System.out.println("Enter item id :");
                 String itemID = sc.nextLine();
                 menu.deleteItem(itemID);
                 break;
-            default:System.out.println("Invalid code. Please try again."); 
+            default:System.out.println("Invalid code. Please try again."); break;
+        
         }
     }
 
@@ -189,7 +201,7 @@ public class Employee extends User
                         System.out.println("Item deleted.");
                     }
                     break;
-                case 5:editMenu(menu);break;
+                case 5:editMenu(menu,itemList);break;
                 case 6:viewReport(orders,itemList);break;
                 case 7:flag=false;break;
                 default: System.out.println("Invalid number. Please try again.");break;
