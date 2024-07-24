@@ -6,7 +6,6 @@ public class BakeryMgmtSys
     public static Customer registerPage(){
         System.out.println("Register Page");
         System.out.println("Enter username : ");
-        sc.nextLine();
         String id = sc.nextLine();
         System.out.println("Enter password : ");
         String password = sc.nextLine();
@@ -18,7 +17,7 @@ public class BakeryMgmtSys
         String address = sc.nextLine();
         return new Customer(id,password,name,phone,address);
     }
-    public static void loginPage(Menu menu,ArrayList<Employee> staff, ArrayList<Customer> customer, ArrayList<Order> orderList)
+    public static void loginPage(Menu menu,ArrayList<Employee> staff, ArrayList<Customer> customer, ArrayList<Order> orderList, ArrayList<Items> itList)
     {
         int select=0; 
         String id="",password="";
@@ -43,7 +42,7 @@ public class BakeryMgmtSys
                         boolean logged=s.login(id,password);
                         if(logged){
                             System.out.println("Logged in");
-                            //s.employeePage();
+                            s.employeePage(menu, itList, orderList);
                         }
                         else{
                             System.out.println("Failed");
@@ -79,6 +78,7 @@ public class BakeryMgmtSys
         ArrayList<Employee> employees=new ArrayList<Employee>();
         ArrayList<Customer> customers=new ArrayList<Customer>();
         ArrayList<Order> ordList=new ArrayList<Order>();
+        ArrayList<Items> itemList=new ArrayList<Items>();
         Menu menu=new Menu();
         employees.add(new Employee("Ali","123","Manager"));
         employees.add(new Employee("Abu","567","Sales"));
@@ -94,7 +94,7 @@ public class BakeryMgmtSys
             sc.nextLine();
             switch(choose)
             {
-                case 1:loginPage(menu,employees,customers,ordList);break;
+                case 1:loginPage(menu,employees,customers,ordList,itemList);break;
                 case 2:customers.add(registerPage());break;
                 case 3:flag=false;break;
                 default:System.out.println("Please try again");break;

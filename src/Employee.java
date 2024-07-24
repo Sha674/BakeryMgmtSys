@@ -77,6 +77,7 @@ public class Employee extends User
         System.out.println("2.Delete an item from menu");
         System.out.println("Please enter integer code to continue :");
         choice=sc.nextInt();
+        sc.nextLine();
         switch(choice)
         {
             case 1: 
@@ -125,18 +126,19 @@ public class Employee extends User
     {
         int choice=0;
         boolean found=false,flag=true;
-        System.out.println("Welcome");
-        System.out.println("1.Update status ");
-        System.out.println("2.Edit item");
-        System.out.println("3.Add new item");
-        System.out.println("4.Delete an item");
-        System.out.println("5.Edit menu ");
-        System.out.println("6. View Report (only manager)");
-        System.out.println("7.Exit");
-        System.out.println("Please enter integer code to continue :");
-        while(flag)
-        {
+        while(flag){
+            System.out.println("Welcome");
+            System.out.println("1.Update status ");
+            System.out.println("2.Edit item");
+            System.out.println("3.Add new item");
+            System.out.println("4.Delete an item");
+            System.out.println("5.Edit menu ");
+            System.out.println("6. View Report (only manager)");
+            System.out.println("7.Exit");
+            System.out.println("Please enter integer code to continue :");
+    
             choice=sc.nextInt();
+            sc.nextLine();
             found=false;
             switch(choice)
             {
@@ -189,7 +191,7 @@ public class Employee extends User
                     break;
                 case 5:editMenu(menu);break;
                 case 6:viewReport(orders,itemList);break;
-                case 7:flag=false;
+                case 7:flag=false;break;
                 default: System.out.println("Invalid number. Please try again.");break;
             }
         }
