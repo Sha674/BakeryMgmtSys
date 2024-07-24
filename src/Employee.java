@@ -176,7 +176,15 @@ public class Employee extends User
                     for(Items item:itemList){
                         if(itemId.equals(item.getId())){
                             editItem(item);
+                            found=true;
+                            break;
                         }
+                    }
+                    if(!found){
+                        System.out.println("Item not found. ");
+                    }
+                    else{
+                        System.out.println("Item edited.");
                     }
                     break;
                 case 3:

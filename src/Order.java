@@ -1,8 +1,10 @@
+import java.time.LocalDate;
 import java.util.*;
 
 public class Order {
+    private static int count=0;
     private String order_id;
-    private Date order_date;
+    private LocalDate order_date;
     private String cusId;
     private ArrayList<OrderedItem> ordered_items;
     //private ArrayList<Integer> quantity;
@@ -10,15 +12,15 @@ public class Order {
     private String payment_type;
 
     public Order(){
+        order_id = String.format("ORD%2d",++count);
+        order_date = LocalDate.now();
+        order_status="Pending";
         ordered_items = new ArrayList<OrderedItem>();
         //quantity=new ArrayList<Integer>();
     }
 
     public Order(String cusId, ArrayList<OrderedItem> ordered_items, String payment_type){
         this();
-        order_id = UUID.randomUUID().toString();
-        order_date = new Date();
-        order_status="Pending";
         setOrder(cusId,ordered_items,payment_type);
     }
 
@@ -91,12 +93,12 @@ public class Order {
         
         for (OrderedItem menu : ordered_items) {
             if (firstItem) {
-                sb.append(String.format("%-8s %-7s %-15s %-10s %-20s %-15s %-10s %-10s %-10s %n",
+                sb.append(String.format("%n %-8s %-7s %-15s %-10s %-20s %-15s %-10s %-10s %-10s %n",
                         order_date, order_id, cusId, payment_type, menu.getItems().getDesc(),
                         menu.getItems().getPrice(), menu.getQty(), menu.getAmount(), calculateTotalPrice()));
                 firstItem = false;
             } else {
-                sb.append(String.format("%-8s %-7s %-15s %-10s %-20s %-15s %-10s %-10s %-10s %n",
+                sb.append(String.format("%n %-8s %-7s %-15s %-10s %-20s %-15s %-10s %-10s %-10s %n",
                         "", "", "", "", menu.getItems().getDesc(),
                         menu.getItems().getPrice(), menu.getQty(), menu.getAmount(),""));
             }

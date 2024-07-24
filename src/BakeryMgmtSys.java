@@ -35,6 +35,7 @@ public class BakeryMgmtSys
     public static void loginPage(Menu menu,ArrayList<Employee> staff, ArrayList<Customer> customer, ArrayList<Order> orderList, ArrayList<Items> itList)
     {
         int select=0; 
+        boolean found=false;
         String id="",password="";
         System.out.println("Login Page");
         System.out.println("1.Employee Login");
@@ -48,6 +49,7 @@ public class BakeryMgmtSys
             case 1:
                 System.out.println("Enter username: ");
                 id=sc.nextLine();
+                
                 for(Employee s:staff)
                 {
                     if(id.equals(s.id))
@@ -60,9 +62,14 @@ public class BakeryMgmtSys
                             s.employeePage(menu, itList, orderList);
                         }
                         else{
-                            System.out.println("Failed");
+                            System.out.println("Login failed");
                         }
+                        found=true;
+                        break;
                     }
+                }
+                if(!found){
+                    System.out.println("Username not found.");
                 }
                 break;
             case 2: 
@@ -79,9 +86,14 @@ public class BakeryMgmtSys
                             cust.customerPage(menu, orderList);
                         }
                         else{
-                            System.out.println("Failed");
+                            System.out.println("Login failed");
                         }
+                        found=true;
+                        break;
                     }
+                }
+                if(!found){
+                    System.out.println("No username found.");
                 }
                 break;
             case 3: return;
