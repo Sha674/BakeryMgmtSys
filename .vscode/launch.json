@@ -9,6 +9,13 @@
             "name": "BakeryMgmtSys",
             "request": "launch",
             "mainClass": "BakeryMgmtSys",
+            "projectName": "BakeryMgmtSys-1_8dcc7780"
+        },
+        {
+            "type": "java",
+            "name": "BakeryMgmtSys",
+            "request": "launch",
+            "mainClass": "BakeryMgmtSys",
             "projectName": "Bakery Management System_4cb97042"
         },
         {

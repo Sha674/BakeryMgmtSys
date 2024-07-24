@@ -27,6 +27,15 @@ public class Items {
     public void setQty(int quantity){
         item_qty=quantity;
     }
+    
+    public int getQty(){
+        return item_qty;
+    }
+
+    public void reduceQty(int quantity)
+    {
+        item_qty-=quantity;
+    }
 
     public String getDesc(){
         return item_desc;

@@ -67,9 +67,16 @@ public class Customer extends User{
                     System.out.println("Item id not found. Please try again.");
                 }
             }
-            System.out.print("Enter quantity: ");
-            int qty=sc.nextInt();
-            sc.nextLine();
+            int qty;
+            do{
+                System.out.print("Enter quantity: ");
+                qty=sc.nextInt();
+                sc.nextLine();
+                if(order.getQty()-qty>0)
+                    order.reduceQty(qty);
+                else
+                    System.out.println("Insufficient item quantity. Please enter quantity agian.");
+            }while(order.getQty()-qty<0);
             orderedItems.add(new OrderedItem(order, qty));
             System.out.println("Do you want to order other items? Please enter Y or N");
             char ans=sc.next().charAt(0);
