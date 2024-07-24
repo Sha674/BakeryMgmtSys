@@ -15,6 +15,14 @@ public class OrderedItem
         this.quantity = quantity;
         amount=item.getPrice()*quantity;
     }
+
+    public Items getItems(){
+        return item;
+    }
+
+    public int getQty(){
+        return quantity;
+    }
     
     public double getAmount()
     {

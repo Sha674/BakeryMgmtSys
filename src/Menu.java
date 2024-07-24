@@ -11,6 +11,17 @@ public class Menu {
     {
         menu_items.add(item);
     }
+
+    public void deleteItem(String itemId){
+        Iterator<Items> it=menu_items.iterator();
+        while(it.hasNext()){
+            Items current=it.next();
+            if(itemId.equals(current.getId())){
+                it.remove();
+                break;
+            }
+        }
+    }
     
     public ArrayList<Items> getMenu()
     {

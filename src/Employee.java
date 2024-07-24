@@ -4,9 +4,7 @@ public class Employee extends User
     private String role;
     Scanner sc = new Scanner(System.in);
 
-    public Employee(){
-
-    }
+    public Employee(){}
     public Employee(String id, String password, String role){
         super(id,password);
         this.role=role;
@@ -43,6 +41,7 @@ public class Employee extends User
             System.out.println("2. Item Price");
             System.out.println("3. Item Quantity");
             System.out.println("4. Exit");
+            System.out.println("Please enter integer code to continue :");
             attChoice=sc.nextInt();
             sc.nextLine();
             switch(attChoice){
@@ -70,12 +69,52 @@ public class Employee extends User
 
     public void editMenu(Menu menu)
     {
-        
+        int choice=0;
+        menu.displayMenu();
+
+        System.out.println("Edit Menu");
+        System.out.println("1.Add item to menu");
+        System.out.println("2.Delete an item from menu");
+        System.out.println("Please enter integer code to continue :");
+        choice=sc.nextInt();
+        switch(choice)
+        {
+            case 1: 
+                Items newItem=new Items();
+                System.out.println("Enter item id :");
+                String id = sc.nextLine();
+                System.out.println("Enter item description :");
+                String desc = sc.nextLine();
+                System.out.println("Enter item price :");
+                double price = sc.nextDouble();
+                System.out.println("Enter item quantity :");
+                int qty = sc.nextInt();
+                menu.addItem(newItem);
+                break;
+            case 2: 
+                System.out.println("Enter item id :");
+                String itemID = sc.nextLine();
+                menu.deleteItem(itemID);
+                break;
+            default:System.out.println("Invalid code. Please try again."); 
+        }
     }
 
-    public void viewReport(){
+    public void viewReport(ArrayList<Order> ordList,ArrayList<Items> itemList){
+        int reportChoice=0;
         if (role.equalsIgnoreCase("Manager")){
-
+            Report report=new Report();
+            System.out.println("View Report Page");
+            System.out.println("1.Sales Report");
+            System.out.println("2.Inventory Report");
+            System.out.println("3.Order Report");
+            System.out.println("Please enter an integer: ");
+            reportChoice=sc.nextInt();
+            switch(reportChoice){
+                case 1:report.generateSalesRp(ordList);break;
+                case 2:report.generateInventoryRp(itemList);break;
+                case 3:report.generateOrderRp(ordList);break;
+            }
         }
         else{
             System.out.println("Access denied. Only manager can view report.");
@@ -94,8 +133,10 @@ public class Employee extends User
         System.out.println("5.Edit menu ");
         System.out.println("6. View Report (only manager)");
         System.out.println("7.Exit");
+        System.out.println("Please enter integer code to continue :");
         while(flag)
         {
+            choice=sc.nextInt();
             found=false;
             switch(choice)
             {
@@ -146,7 +187,7 @@ public class Employee extends User
                         System.out.println("Item deleted.");
                     }
                 case 5:editMenu(menu);break;
-                case 6:viewReport();break;
+                case 6:viewReport(orders,itemList);break;
                 case 7:flag=false;
                 default: System.out.println("Invalid number. Please try again.");break;
             }
