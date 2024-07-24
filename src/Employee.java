@@ -69,7 +69,35 @@ public class Employee extends User
 
     public void editMenu(Menu menu)
     {
-        
+        int choice=0;
+        menu.displayMenu();
+
+        System.out.println("Edit Menu");
+        System.out.println("1.Add item to menu");
+        System.out.println("2.Delete an item from menu");
+        System.out.println("Please enter integer code to continue :");
+        choice=sc.nextInt();
+        switch(choice)
+        {
+            case 1: 
+                Items newItem=new Items();
+                System.out.println("Enter item id :");
+                String id = sc.nextLine();
+                System.out.println("Enter item description :");
+                String desc = sc.nextLine();
+                System.out.println("Enter item price :");
+                double price = sc.nextDouble();
+                System.out.println("Enter item quantity :");
+                int qty = sc.nextInt();
+                menu.addItem(newItem);
+                break;
+            case 2: 
+                System.out.println("Enter item id :");
+                String itemID = sc.nextLine();
+                menu.deleteItem(itemID);
+                break;
+            default:System.out.println("Invalid code. Please try again."); 
+        }
     }
 
     public void viewReport(ArrayList<Order> ordList,ArrayList<Items> itemList){
