@@ -92,7 +92,7 @@ public class Customer extends User{
                 default:System.out.print("invalid code");break;
             }
         }while(code<1||code>2);
-        Order customerOrd=new Order(name, orderedItems, method);
+        Order customerOrd=new Order(id, orderedItems, method);
         orderHistory.add(customerOrd);
         return customerOrd;
     }

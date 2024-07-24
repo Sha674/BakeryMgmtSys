@@ -3,7 +3,7 @@ import java.util.*;
 public class Order {
     private String order_id;
     private Date order_date;
-    private String cusName;
+    private String cusId;
     private ArrayList<OrderedItem> ordered_items;
     //private ArrayList<Integer> quantity;
     private String order_status;
@@ -14,17 +14,17 @@ public class Order {
         //quantity=new ArrayList<Integer>();
     }
 
-    public Order(String cusName, ArrayList<OrderedItem> ordered_items, String payment_type){
+    public Order(String cusId, ArrayList<OrderedItem> ordered_items, String payment_type){
         this();
         order_id = UUID.randomUUID().toString();
         order_date = new Date();
         order_status="Pending";
-        setOrder(cusName,ordered_items,payment_type);
+        setOrder(cusId,ordered_items,payment_type);
     }
 
-    public void setOrder(String cusName,ArrayList<OrderedItem> ordered_items,String payment_type)
+    public void setOrder(String cusId,ArrayList<OrderedItem> ordered_items,String payment_type)
     {
-        this.cusName=cusName;
+        this.cusId=cusId;
         this.ordered_items = ordered_items;
         this.payment_type=payment_type;
     }
@@ -34,7 +34,7 @@ public class Order {
         return order_id;
     }
 
-    public ArrayList<OrderedItem> ordered_items()
+    public ArrayList<OrderedItem> getOrderedItems()
     {
         return ordered_items;
     }
@@ -66,13 +66,13 @@ public class Order {
         return totalPrice;
     }
 
-    public void displayOrder()
+    public void displayOrder()//displays only one order
     {
         System.out.println("                                    ORDER");
         System.out.println("-------------------------------------------------------------------------------------------");
         System.out.println("Order Id: "+order_id);
         System.out.println("Order Date: "+order_date);
-        System.out.println("Customer name: "+cusName);
+        System.out.println("Customer name: "+cusId);
         System.out.println("Order Status: "+order_status);
         System.out.println("Payment Type: " + payment_type);
         System.out.println("\nOrdered Items: ");
@@ -84,5 +84,24 @@ public class Order {
         
     }
 
+    public String toString()//to display in report
+    {
+        StringBuilder sb = new StringBuilder();
+        boolean firstItem = true;
+        
+        for (OrderedItem menu : ordered_items) {
+            if (firstItem) {
+                sb.append(String.format("%-8s %-7s %-15s %-10s %-20s %-15s %-10s %-10s %-10s %n",
+                        order_date, order_id, cusId, payment_type, menu.getItems().getDesc(),
+                        menu.getItems().getPrice(), menu.getQty(), menu.getAmount(), calculateTotalPrice()));
+                firstItem = false;
+            } else {
+                sb.append(String.format("%-8s %-7s %-15s %-10s %-20s %-15s %-10s %-10s %-10s %n",
+                        "", "", "", "", menu.getItems().getDesc(),
+                        menu.getItems().getPrice(), menu.getQty(), menu.getAmount(),""));
+            }
+        }
+        return sb.toString();
+    }
     
 }

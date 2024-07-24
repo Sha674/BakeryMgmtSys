@@ -72,9 +72,21 @@ public class Employee extends User
         
     }
 
-    public void viewReport(){
+    public void viewReport(ArrayList<Order> ordList,ArrayList<Items> itemList){
+        int reportChoice=0;
         if (role.equalsIgnoreCase("Manager")){
-
+            Report report=new Report();
+            System.out.println("View Report Page");
+            System.out.println("1.Sales Report");
+            System.out.println("2.Inventory Report");
+            System.out.println("3.Order Report");
+            System.out.println("Please enter an integer: ");
+            reportChoice=sc.nextInt();
+            switch(reportChoice){
+                case 1:report.generateSalesRp(ordList);break;
+                case 2:report.generateInventoryRp(itemList);break;
+                case 3:report.generateOrderRp(ordList);break;
+            }
         }
         else{
             System.out.println("Access denied. Only manager can view report.");
@@ -147,7 +159,7 @@ public class Employee extends User
                         System.out.println("Item deleted.");
                     }
                 case 5:editMenu(menu);break;
-                case 6:viewReport();break;
+                case 6:viewReport(orders,itemList);break;
                 case 7:flag=false;
                 default: System.out.println("Invalid number. Please try again.");break;
             }
