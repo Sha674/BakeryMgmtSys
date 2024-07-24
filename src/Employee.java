@@ -190,6 +190,7 @@ public class Employee extends User
                         Items current=it.next();
                         if(itId.equals(current.getId())){
                             it.remove();
+                            menu.deleteItem(current.getId());
                             found=true;
                             break;
                         }
