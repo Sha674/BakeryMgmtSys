@@ -7,7 +7,9 @@ public class Customer extends User{
 
     Scanner sc=new Scanner(System.in);
 
-    public Customer(){}
+    public Customer(){
+        orderHistory=new ArrayList<Order>();
+    }
 
     public Customer(String id, String password, String name, String phone, String address){
         super(id, password);
@@ -45,14 +47,14 @@ public class Customer extends User{
     public Order placeOrder(Menu menu)
     {
         String method="";
-        boolean flag=true, found=false;
-        int code=0;
+        boolean flag=true, found;
+        int code,qty;
         Items order=new Items();
         ArrayList<Items> menuItems=menu.getMenu();
         ArrayList<OrderedItem> orderedItems=new ArrayList<OrderedItem>();
+        viewMenu(menu);
         while(flag){
             found=false;
-            viewMenu(menu);
             while(!found){
                 System.out.print("Enter item id : ");
                 String id=sc.nextLine();
@@ -67,7 +69,6 @@ public class Customer extends User{
                     System.out.println("Item id not found. Please try again.");
                 }
             }
-            int qty;
             do{
                 System.out.print("Enter quantity: ");
                 qty=sc.nextInt();
@@ -77,6 +78,7 @@ public class Customer extends User{
                 else
                     System.out.println("Insufficient item quantity. Please enter quantity agian.");
             }while(order.getQty()-qty<0);
+            
             orderedItems.add(new OrderedItem(order, qty));
             System.out.println("Do you want to order other items? Please enter Y or N");
             char ans=sc.next().charAt(0);
