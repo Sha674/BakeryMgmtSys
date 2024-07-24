@@ -7,7 +7,9 @@ public class Customer extends User{
 
     Scanner sc=new Scanner(System.in);
 
-    public Customer(){}
+    public Customer(){
+        orderHistory=new ArrayList<Order>();
+    }
 
     public Customer(String id, String password, String name, String phone, String address){
         super(id, password);
@@ -45,14 +47,14 @@ public class Customer extends User{
     public Order placeOrder(Menu menu)
     {
         String method="";
-        boolean flag=true, found=false;
-        int code=0;
+        boolean flag=true, found;
+        int code;
         Items order=new Items();
         ArrayList<Items> menuItems=menu.getMenu();
         ArrayList<OrderedItem> orderedItems=new ArrayList<OrderedItem>();
+        viewMenu(menu);
         while(flag){
             found=false;
-            viewMenu(menu);
             while(!found){
                 System.out.print("Enter item id : ");
                 String id=sc.nextLine();
