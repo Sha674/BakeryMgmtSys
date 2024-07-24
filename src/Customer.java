@@ -82,6 +82,7 @@ public class Customer extends User{
             orderedItems.add(new OrderedItem(order, qty));
             System.out.println("Do you want to order other items? Please enter Y or N");
             char ans=sc.next().charAt(0);
+            sc.nextLine();
             ans=Character.toUpperCase(ans);
             if(ans=='N'){
                 flag=false;
