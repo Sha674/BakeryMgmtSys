@@ -82,6 +82,7 @@ public class Customer extends User{
             System.out.print("Select payment method: ");
             System.out.print("1.online banking ");
             System.out.print("2.e-wallet ");
+            System.out.println("Please enter 1 or 2 ");
             code =sc.nextInt();
             sc.nextLine();
             switch(code)
@@ -118,6 +119,7 @@ public class Customer extends User{
             System.out.println("2.place order");
             System.out.println("3.view order history ");
             System.out.println("4.Exit ");
+            System.out.println("Please enter integer code to continue :");
             choice=sc.nextInt();
             sc.nextLine();
             switch(choice)

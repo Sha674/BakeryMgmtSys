@@ -26,6 +26,7 @@ public class BakeryMgmtSys
         System.out.println("1.Employee Login");
         System.out.println("2.Customer Login");
         System.out.println("3.Back to previous page");
+        System.out.println("Please enter integer code to continue :");
         select = sc.nextInt();
         sc.nextLine();
         switch(select)

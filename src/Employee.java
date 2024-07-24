@@ -4,9 +4,7 @@ public class Employee extends User
     private String role;
     Scanner sc = new Scanner(System.in);
 
-    public Employee(){
-
-    }
+    public Employee(){}
     public Employee(String id, String password, String role){
         super(id,password);
         this.role=role;
@@ -43,6 +41,7 @@ public class Employee extends User
             System.out.println("2. Item Price");
             System.out.println("3. Item Quantity");
             System.out.println("4. Exit");
+            System.out.println("Please enter integer code to continue :");
             attChoice=sc.nextInt();
             sc.nextLine();
             switch(attChoice){
@@ -94,8 +93,10 @@ public class Employee extends User
         System.out.println("5.Edit menu ");
         System.out.println("6. View Report (only manager)");
         System.out.println("7.Exit");
+        System.out.println("Please enter integer code to continue :");
         while(flag)
         {
+            choice=sc.nextInt();
             found=false;
             switch(choice)
             {
