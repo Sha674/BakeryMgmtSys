@@ -5,7 +5,6 @@ public class Report {
     private static int idCount=0;
     private String report_id;
     private LocalDate report_date;
-    private ArrayList<Items> inventory;
     
     public Report(){
         report_id=String.format("R%03d", ++idCount);

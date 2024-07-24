@@ -80,7 +80,6 @@ public class Employee extends User
         switch(choice)
         {
             case 1: 
-                Items newItem=new Items();
                 System.out.println("Enter item id :");
                 String id = sc.nextLine();
                 System.out.println("Enter item description :");
@@ -89,7 +88,8 @@ public class Employee extends User
                 double price = sc.nextDouble();
                 System.out.println("Enter item quantity :");
                 int qty = sc.nextInt();
-                menu.addItem(newItem);
+                sc.nextLine();
+                menu.addItem(new Items(id, desc, price, qty));
                 break;
             case 2: 
                 System.out.println("Enter item id :");
@@ -186,6 +186,7 @@ public class Employee extends User
                     else{
                         System.out.println("Item deleted.");
                     }
+                    break;
                 case 5:editMenu(menu);break;
                 case 6:viewReport(orders,itemList);break;
                 case 7:flag=false;
