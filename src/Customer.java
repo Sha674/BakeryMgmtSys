@@ -132,8 +132,24 @@ public class Customer extends User{
             switch(choice)
             {
                 case 1:viewMenu(menu);break;
-                case 2:cusOrder.add(placeOrder(menu));break;
-                case 3:viewOrdHis();break;
+                case 2:if(menu.getMenu().isEmpty())
+                        {
+                            System.out.println("Bakery is empty");
+                        }
+                        else
+                        {
+                            cusOrder.add(placeOrder(menu));
+                        }
+                        break;
+                case 3:if(cusOrder.isEmpty())
+                        {
+                            System.out.println("No order before");
+                        }
+                        else
+                        {
+                            viewOrdHis();
+                        }
+                        break;
                 case 4:flag=false;break;
                 default: System.out.println("Invalid number. Please try again.");break;
             }
