@@ -160,6 +160,9 @@ public class Employee extends User
             switch(choice)
             {
                 case 1:
+                    for(Order dOrder:orders){
+                        dOrder.displayOrder();
+                    }
                     System.out.println("Enter order ID: ");
                     String ord=sc.nextLine();
                     for(Order o:orders){
