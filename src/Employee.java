@@ -98,9 +98,12 @@ public class Employee extends User
                 if(!found){
                     System.out.println("Item not found. Do you wish to add item? Enter Y or N");
                     char addNew = sc.next().charAt(0);
+                    sc.nextLine();
                     addNew=Character.toUpperCase(addNew);
                     if(addNew=='Y'){
-                        itemList.add(addItem());//add new item to menu
+                        Items newItem=addItem();
+                        itemList.add(newItem);//add new item 
+                        menu.addItem(newItem);//add to menu
                     }
                     else{
                         return;
@@ -150,7 +153,7 @@ public class Employee extends User
             System.out.println("3.Add new item");
             System.out.println("4.Delete an item");
             System.out.println("5.Edit menu ");
-            System.out.println("6. View Report (only manager)");
+            System.out.println("6.View Report (only manager)");
             System.out.println("7.Exit");
             System.out.println("Please enter integer code to continue :");
     
@@ -179,6 +182,11 @@ public class Employee extends User
                     }
                     break;
                 case 2:
+                    System.out.printf("%-10s %-25s %-10s %-10s%n","ID","Description","Price","Quantity");
+                    System.out.println("------------------------------------------------------------");
+                    for(Items it:itemList){
+                        System.out.println(it);
+                    }
                     System.out.println("Enter item id: ");
                     String itemId=sc.nextLine();
                     for(Items item:itemList){
@@ -196,9 +204,19 @@ public class Employee extends User
                     }
                     break;
                 case 3:
+                    System.out.printf("%-10s %-25s %-10s %-10s%n","ID","Description","Price","Quantity");
+                    System.out.println("------------------------------------------------------------");
+                    for(Items it:itemList){
+                        System.out.println(it);
+                    }
                     itemList.add(addItem());
                     break;
                 case 4:
+                    System.out.printf("%-10s %-25s %-10s %-10s%n","ID","Description","Price","Quantity");
+                    System.out.println("------------------------------------------------------------");
+                    for(Items it:itemList){
+                        System.out.println(it);
+                    }
                     System.out.println("Enter item id to delete: ");
                     String itId=sc.nextLine();
                     Iterator<Items> it=itemList.iterator();
