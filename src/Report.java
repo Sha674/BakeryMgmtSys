@@ -20,7 +20,7 @@ public class Report {
             System.out.printf("%-10s %-25s %-10s %-10s%n","ID","Description","Price","Quantity");
         }
         else{
-            System.out.printf("%-12s %-10s %-12s %-15s %-20s %-12s %-10s %-12s %-12s%n","Date", "Order ID","Customer ID","Payment Method","Items","Price per Unit","Quantity", "Price","Total Price");
+            System.out.printf("%-15s %-12s %-12s %-15s %-20s %-12s %-10s %-12s %-12s","Date", "Order ID","Customer ID","Payment Method","Items","Price per Unit","Quantity", "Price","Total Price");
         }
         System.out.println("-------------------------------------------------------------------------------------------");
     }
