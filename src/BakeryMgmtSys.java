@@ -1,8 +1,9 @@
 import java.util.*;
 public class BakeryMgmtSys 
 {
-    static Scanner sc=new Scanner(System.in);
+    static Scanner sc=new Scanner(System.in); //Scanner for input
 
+    //register new customer
     public static void registerPage(ArrayList<Customer> c)
     {
         boolean repeat;
@@ -12,7 +13,7 @@ public class BakeryMgmtSys
             System.out.println("Register Page");
             System.out.println("Enter username : ");
             id = sc.nextLine();
-            for(Customer cus: c)
+            for(Customer cus: c)//check if username exist
             {
                 if(id.equals(cus.id)){
                     System.out.println("Username existed. Please enter another one.");
@@ -21,7 +22,7 @@ public class BakeryMgmtSys
                 }           
             }
         }while(repeat);
-       
+       //prompt customer info
         System.out.println("Enter password : ");
         String password = sc.nextLine();
         System.out.println("Enter name: ");
@@ -30,8 +31,10 @@ public class BakeryMgmtSys
         String phone = sc.nextLine();
         System.out.println("Enter address: ");
         String address = sc.nextLine();
+        //add new customer to arrayList
         c.add(new Customer(id, password, name, phone, address));
     }
+    //login
     public static void loginPage(Menu menu,ArrayList<Employee> staff, ArrayList<Customer> customer, ArrayList<Order> orderList, ArrayList<Items> itList)
     {
         int select=0; 
@@ -52,7 +55,7 @@ public class BakeryMgmtSys
                 
                 for(Employee s:staff)
                 {
-                    if(id.equals(s.id))
+                    if(id.equals(s.id))//if username is found
                     {
                         System.out.println("Enter password: ");
                         password=sc.nextLine();
@@ -96,21 +99,26 @@ public class BakeryMgmtSys
                     System.out.println("No username found.");
                 }
                 break;
-            case 3: return;
+            case 3: return;//return to previous page
         }
     }
     public static void main(String[] args) throws Exception 
     { 
         int choose;
         boolean flag = true;
+        
+        //initialise arraylists
         ArrayList<Employee> employees=new ArrayList<Employee>();
         ArrayList<Customer> customers=new ArrayList<Customer>();
         ArrayList<Order> ordList=new ArrayList<Order>();
         ArrayList<Items> itemList=new ArrayList<Items>();
-        Menu menu=new Menu();
-        employees.add(new Employee("Ali","123","Manager"));
-        employees.add(new Employee("Abu","567","Sales"));
 
+        Menu menu=new Menu();
+        //add employees
+        employees.add(new Employee("Ali","123","Manager"));
+        employees.add(new Employee("Abu","567","Salesperson"));
+
+        //add items
         itemList.add(new Items("BRE01","Sourdough Bread",9.00,20));
         itemList.add(new Items("BRE02","Whole Wheat Bread",5.00,30));
         itemList.add(new Items("BRE03","Multigrain Bread",8.00,15));
@@ -125,7 +133,6 @@ public class BakeryMgmtSys
         itemList.add(new Items("COO02","Double Chocolate Cookie",3.50,12));
         itemList.add(new Items("COO03","Matcha Cookie",4.00,10));
         itemList.add(new Items("PAT01","Croissant",5.00,14));
-
         for(Items i:itemList)
         {
             menu.addItem(i);

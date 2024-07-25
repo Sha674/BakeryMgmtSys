@@ -8,7 +8,7 @@ public class Customer extends User{
     Scanner sc=new Scanner(System.in);
 
     public Customer(){
-        orderHistory=new ArrayList<Order>();
+        orderHistory=new ArrayList<Order>();//initialise order history
     }
 
     public Customer(String id, String password, String name, String phone, String address){
@@ -30,7 +30,7 @@ public class Customer extends User{
         System.out.println("Address: "+address);
     }
 
-   
+    //place order
     public Order placeOrder(Menu menu)
     {
         String method="";
@@ -46,7 +46,8 @@ public class Customer extends User{
                 System.out.print("Enter item id : ");
                 String itemId=sc.nextLine();
                 for(Items m:menuItems){
-                    if(itemId.equals(m.getId())){
+                    if(itemId.equals(m.getId()))//Check if item id exists
+                    {
                         order=m;
                         found=true;
                         break;
@@ -61,13 +62,13 @@ public class Customer extends User{
                 System.out.print("Enter quantity: ");
                 qty=sc.nextInt();
                 sc.nextLine();
-                if(avaiQty-qty>=0)
+                if(avaiQty-qty>=0)//check if there is enough stock
                     order.reduceQty(qty);
                 else
                     System.out.println("Insufficient item quantity. Please enter quantity again.");
             }while(avaiQty-qty<0);
             
-            orderedItems.add(new OrderedItem(order, qty));
+            orderedItems.add(new OrderedItem(order, qty));//add items to orderedItems
             System.out.println("Do you want to order other items? Please enter Y or N");
             char ans=sc.next().charAt(0);
             sc.nextLine();
@@ -90,7 +91,7 @@ public class Customer extends User{
                 default:System.out.print("invalid code");break;
             }
         }while(code<1||code>2);
-        Order customerOrd=new Order(id, orderedItems, method);
+        Order customerOrd=new Order(id, orderedItems, method); //create a new order
         orderHistory.add(customerOrd);
         return customerOrd;
     }

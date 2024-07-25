@@ -2,26 +2,25 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class Order {
-    private static int count=0;
+    private static int count=0; //static variable to count number of orders
     private String order_id;
     private LocalDate order_date;
     private String cusId;
     private ArrayList<OrderedItem> ordered_items;
-    //private ArrayList<Integer> quantity;
     private String order_status;
     private String payment_type;
 
+    //default constructor to initialise order with default values
     public Order(){
         order_id = String.format("ORD%2d",++count);
-        order_date = LocalDate.now();
+        order_date = LocalDate.now(); //set date to current date
         order_status="Pending";
         ordered_items = new ArrayList<OrderedItem>();
-        //quantity=new ArrayList<Integer>();
     }
 
     public Order(String cusId, ArrayList<OrderedItem> ordered_items, String payment_type){
-        this();
-        setOrder(cusId,ordered_items,payment_type);
+        this();//call default constructor
+        setOrder(cusId,ordered_items,payment_type); //set order details
     }
 
     public void setOrder(String cusId,ArrayList<OrderedItem> ordered_items,String payment_type)
@@ -41,24 +40,12 @@ public class Order {
         return ordered_items;
     }
     
-    /*public ArrayList<Items> getMenus(){
-        return menu_items;
-    }*/
-
-    // public String getDetails(boolean flag,Items menuItems){//to generate sales report
-    //     if(flag){
-    //         return String.format("%-8s %-7s %-18s %-15s ", order_date,order_id,cust.getName(),payment_type,menuItems.getName(),menuItems.getPrice(),qty);
-    //     }
-    //     else{
-    //         return String.format("%-8s %-7s %-18s %-15s ", order_date,order_id,cust.getName(),payment_type);
-    //     }
-    // }
-
     public void updateStatus(String order_status)
     {
         this.order_status=order_status;
     }
     
+    //method to calculate the total price for an order
     public double calculateTotalPrice()
     {
         double totalPrice = 0;
@@ -85,6 +72,7 @@ public class Order {
         
     }
 
+    //overriding toString() method
     public String toString()//to display in report
     {
         StringBuilder sb = new StringBuilder();

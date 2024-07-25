@@ -7,11 +7,13 @@ public class Menu {
         menu_items=new ArrayList<Items>();
     }
 
+    //add items to menu
     public void addItem(Items item)
     {
         menu_items.add(item);
     }
 
+    //delete item from menu
     public void deleteItem(String itemId){
         Iterator<Items> it=menu_items.iterator();
         while(it.hasNext()){

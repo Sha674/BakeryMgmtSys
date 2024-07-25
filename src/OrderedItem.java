@@ -4,10 +4,7 @@ public class OrderedItem
     private int quantity;
     private double amount;
     
-    public OrderedItem() 
-    {
-
-    }
+    public OrderedItem(){}
     
     public OrderedItem(Items item, int quantity) 
     {

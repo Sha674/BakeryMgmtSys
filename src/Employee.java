@@ -1,7 +1,7 @@
 import java.util.*;
 public class Employee extends User 
 {
-    private String role;
+    private String role; //roles (Manager/Salesperson)
     Scanner sc = new Scanner(System.in);
 
     public Employee(){}
@@ -14,11 +14,13 @@ public class Employee extends User
         this.role=role;
     }
 
+    //update status
     public void updateOrdStatus(Order order, String status)
     {
         order.updateStatus(status);
     }
 
+    //create and return a new item
     public Items addItem(){
         System.out.println("Enter item id: ");
         String itemId=sc.nextLine();
@@ -32,6 +34,8 @@ public class Employee extends User
         sc.nextLine();
         return new Items(itemId, itemDesc, itemPrice, itemQty);
     }
+    
+    //edit item details
     public void editItem(Items item)
     {
         int attChoice;
@@ -86,7 +90,7 @@ public class Employee extends User
                 String itemId = sc.nextLine();
                 for(Items item:itemList){
                     if(itemId.equals(item.getId())){
-                        menu.addItem(item);
+                        menu.addItem(item);//add item to menu
                         found=true;
                         break;
                     }
@@ -96,7 +100,7 @@ public class Employee extends User
                     char addNew = sc.next().charAt(0);
                     addNew=Character.toUpperCase(addNew);
                     if(addNew=='Y'){
-                        itemList.add(addItem());
+                        itemList.add(addItem());//add new item to menu
                     }
                     else{
                         return;
@@ -106,13 +110,14 @@ public class Employee extends User
             case 2: 
                 System.out.println("Enter item id :");
                 String itemID = sc.nextLine();
-                menu.deleteItem(itemID);
+                menu.deleteItem(itemID);//delete item from menu
                 break;
             default:System.out.println("Invalid code. Please try again."); break;
         
         }
     }
 
+    //view report only by manager
     public void viewReport(ArrayList<Order> ordList,ArrayList<Items> itemList){
         int reportChoice=0;
         if (role.equalsIgnoreCase("Manager")){
@@ -198,7 +203,7 @@ public class Employee extends User
                         Items current=it.next();
                         if(itId.equals(current.getId())){
                             it.remove();
-                            menu.deleteItem(current.getId());
+                            menu.deleteItem(current.getId());//delete item from menu
                             found=true;
                             break;
                         }
