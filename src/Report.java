@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -5,6 +6,8 @@ public class Report {
     private static int idCount=0;
     private String report_id;
     private LocalDate report_date;
+    private static final DecimalFormat df = new DecimalFormat("####.00");
+
     
     public Report(){
         report_id=String.format("R%03d", ++idCount);
@@ -15,14 +18,17 @@ public class Report {
         System.out.println("Report ID: "+report_id);
         System.out.println("Report Date: "+report_date);
         System.out.println("Report Type: "+type);
-        System.out.println("-------------------------------------------------------------------------------------------");
         if(type.equalsIgnoreCase("Inventory")){
+            System.out.println("------------------------------------------------------------");
             System.out.printf("%-10s %-25s %-10s %-10s%n","ID","Description","Price","Quantity");
+            System.out.println("------------------------------------------------------------");
         }
         else{
-            System.out.printf("%-15s %-12s %-12s %-15s %-20s %-12s %-10s %-12s %-12s","Date", "Order ID","Customer ID","Payment Method","Items","Price per Unit","Quantity", "Price","Total Price");
+            System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.printf("%-15s %-12s %-12s %-15s %-25s %-15s %-10s %-12s %-12s%n","Date", "Order ID","Customer ID","Payment Method","Items","Price per unit","Quantity", "Price","Total Price");
+            System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
+
         }
-        System.out.println("-------------------------------------------------------------------------------------------");
     }
 
     public void generateSalesRp(ArrayList<Order> orders){
@@ -31,18 +37,8 @@ public class Report {
         for(Order o:orders){
             System.out.println(o);
             totalSales+=o.calculateTotalPrice();
-            // boolean firstItem = true;
-            // for (OrderedItem menu : o.getOrderedItems()) {
-            //     if (firstItem) {
-            //         System.out.println(o);
-            //         firstItem = false;
-            //     } else {
-            //         System.out.printf("%-8s %-7s %-18s %-15s %-20s %-15s %-10s %-10s", "","","","", menu.getItems().getDesc(), menu.getItems().getPrice(),menu.getQty(),menu.getAmount());
-            //     }
-            // }
-
         }
-        System.out.println("Total Sales Revenue: "+totalSales);
+        System.out.println("Total Sales Revenue: RM"+df.format(totalSales));
     }
 
     public void generateInventoryRp(ArrayList<Items> itemList){
