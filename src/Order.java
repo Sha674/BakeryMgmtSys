@@ -94,14 +94,14 @@ public class Order {
         
         for (OrderedItem menu : ordered_items) {
             if (firstItem) {
-                sb.append(String.format("%n %-8s %-7s %-15s %-10s %-20s %-15s %-10s %-10s %-10s %n",
+                sb.append(String.format("%-12s %-10s %-12s %-15s %-20s %-12s %-10s %-12s %-12s%n",
                         order_date, order_id, cusId, payment_type, menu.getItems().getDesc(),
-                        menu.getItems().getPrice(), menu.getQty(), menu.getAmount(), calculateTotalPrice()));
+                        menu.getItems().getPrice(), menu.getQty(), menu.getAmount()));
                 firstItem = false;
             } else {
-                sb.append(String.format("%n %-8s %-7s %-15s %-10s %-20s %-15s %-10s %-10s %-10s %n",
+                sb.append(String.format("%-12s %-10s %-12s %-15s %-20s %-12s %-10s %-12s %-12s%n",
                         "", "", "", "", menu.getItems().getDesc(),
-                        menu.getItems().getPrice(), menu.getQty(), menu.getAmount(),""));
+                        menu.getItems().getPrice(), menu.getQty(), menu.getAmount()));
             }
         }
         return sb.toString();

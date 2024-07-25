@@ -15,14 +15,19 @@ public class Report {
         System.out.println("Report ID: "+report_id);
         System.out.println("Report Date: "+report_date);
         System.out.println("Report Type: "+type);
-        System.out.println("------------------------------------------");
-        
+        System.out.println("-------------------------------------------------------------------------------------------");
+        if(type.equalsIgnoreCase("Inventory")){
+            System.out.printf("%-10s %-25s %-10s %-10s%n","ID","Description","Price","Quantity");
+        }
+        else{
+            System.out.printf("%-12s %-10s %-12s %-15s %-20s %-12s %-10s %-12s %-12s%n","Date", "Order ID","Customer ID","Payment Method","Items","Price per Unit","Quantity", "Price","Total Price");
+        }
+        System.out.println("-------------------------------------------------------------------------------------------");
     }
 
     public void generateSalesRp(ArrayList<Order> orders){
         double totalSales=0;
         reportHeader("Sales");
-        System.out.printf("%-8s %-7s %-18s %-15s %-20s %-15s %-10s %-10s %-10s","Date", "Order ID","Customer ID","Payment Method","Items","Price per Unit","Quantity", "Price","Total Price");
         for(Order o:orders){
             System.out.println(o);
             totalSales+=o.calculateTotalPrice();
@@ -42,7 +47,6 @@ public class Report {
 
     public void generateInventoryRp(ArrayList<Items> itemList){
         reportHeader("Inventory");
-        System.out.printf("%-10s %-25s %-10s %-10s%n","ID","Description","Price","Quantity");
         for(Items item:itemList){
             System.out.println(item);
         }
@@ -51,8 +55,6 @@ public class Report {
 
     public void generateOrderRp(ArrayList<Order> orderList){
         reportHeader("Order");
-
-        System.out.printf("%-8s %-7s %-18s %-15s %-20s %-15s %-10s %-10s %-10s","Date", "Order ID","Customer ID","Payment Method","Items","Price per Unit","Quantity", "Price","Total Price");
         for(Order o:orderList){
             System.out.println(o);
             // boolean firstItem = true;
