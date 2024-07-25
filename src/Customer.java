@@ -102,6 +102,8 @@ public class Customer extends User{
 
     public void viewOrdHis()
     {
+        System.out.println("                                    ORDERS");
+        System.out.println("-------------------------------------------------------------------------------------------");
         for(Order ordHis:orderHistory){
             ordHis.displayOrder();
         }

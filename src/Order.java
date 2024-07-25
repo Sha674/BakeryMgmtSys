@@ -70,8 +70,6 @@ public class Order {
 
     public void displayOrder()//displays only one order
     {
-        System.out.println("                                    ORDER");
-        System.out.println("-------------------------------------------------------------------------------------------");
         System.out.println("Order Id: "+order_id);
         System.out.println("Order Date: "+order_date);
         System.out.println("Customer name: "+cusId);
