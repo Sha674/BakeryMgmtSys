@@ -29,6 +29,18 @@ public class Menu {
     {
         return menu_items;
     }
+
+    public double getItemPrice(String itemId)
+    {
+        for (Items item : menu_items) 
+        {
+            if (item.getId().equalsIgnoreCase(itemId)) 
+            {
+                return item.getPrice();
+            }
+        }
+        return 0;
+    }
     
     public void displayMenu()
     {
